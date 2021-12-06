@@ -1,8 +1,11 @@
 package com.switchfully;
 
+import org.springframework.stereotype.Repository;
+
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+@Repository
 public class CustomerRepository {
     private final Map<String, Customer> customers;
 
