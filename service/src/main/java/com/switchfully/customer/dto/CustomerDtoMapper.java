@@ -1,7 +1,9 @@
 package com.switchfully.customer.dto;
 
 import com.switchfully.Customer;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CustomerDtoMapper {
 
     public CustomerDto mapToDto(Customer customer) {
