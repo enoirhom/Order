@@ -1,6 +1,9 @@
 package com.switchfully;
 
+import java.util.UUID;
+
 public class Customer {
+    private final String id;
     private final String firstname;
     private final String lastname;
     private final String email;
@@ -8,6 +11,7 @@ public class Customer {
     private final String phoneNumber;
 
     public Customer(String firstname, String lastname, String email, Address address, String phoneNumber) {
+        this.id = UUID.randomUUID().toString();
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
