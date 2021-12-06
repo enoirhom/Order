@@ -1,11 +1,11 @@
 package com.switchfully;
 
 public class Customer {
-    private String firstname;
-    private String lastname;
-    private String email;
-    private Address address;
-    private String phoneNumber;
+    private final String firstname;
+    private final String lastname;
+    private final String email;
+    private final Address address;
+    private final String phoneNumber;
 
     public Customer(String firstname, String lastname, String email, Address address, String phoneNumber) {
         this.firstname = firstname;

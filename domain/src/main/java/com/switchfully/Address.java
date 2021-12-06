@@ -3,7 +3,6 @@ package com.switchfully;
 import java.util.Objects;
 
 public class Address {
-
     private final String street;
     private final String house;
     private final String town;
