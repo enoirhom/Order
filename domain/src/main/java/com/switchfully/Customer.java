@@ -19,6 +19,10 @@ public class Customer {
         this.phoneNumber = phoneNumber;
     }
 
+    public String getId() {
+        return id;
+    }
+
     public String getFirstname() {
         return firstname;
     }
