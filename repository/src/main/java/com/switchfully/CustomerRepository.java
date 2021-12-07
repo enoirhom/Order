@@ -17,7 +17,14 @@ public class CustomerRepository {
         customers.put(customer.getId(), customer);
     }
 
-    public Customer getCustomerWith(String id) {
+    public Customer getCustomerById(String id) {
         return customers.get(id);
+    }
+
+    public Customer getCustomerByEmail(String email) {
+        return customers.values().stream()
+                .filter(customer -> customer.getEmail().equals(email))
+                .findFirst()
+                .orElse(null);
     }
 }
