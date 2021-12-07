@@ -20,7 +20,7 @@ class CustomerRepositoryTest {
         Customer customer = new Customer("Jon", "Snow", "jon@snow.com", randomAddress,"046532165");
 
         customerRepository.addCustomer(customer);
-        Customer actual = customerRepository.getCustomerWith(customer.getId());
+        Customer actual = customerRepository.getCustomerById(customer.getId());
 
         Assertions.assertThat(actual).isEqualTo(customer);
     }
