@@ -2,13 +2,14 @@ package com.switchfully;
 
 import java.util.UUID;
 
-public class Customer {
+public class Customer implements Authorizable {
     private final String id;
     private final String firstname;
     private final String lastname;
     private final String email;
     private final Address address;
     private final String phoneNumber;
+    private final Role role;
 
     public Customer(String firstname, String lastname, String email, Address address, String phoneNumber) {
         this.id = UUID.randomUUID().toString();
@@ -17,6 +18,7 @@ public class Customer {
         this.email = email;
         this.address = address;
         this.phoneNumber = phoneNumber;
+        this.role = Role.CUSTOMER;
     }
 
     public String getId() {
@@ -41,5 +43,10 @@ public class Customer {
 
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    @Override
+    public boolean isAuthorized(Role role) {
+        return this.role.rank >= role.rank;
     }
 }
