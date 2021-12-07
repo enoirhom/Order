@@ -5,6 +5,7 @@ import com.switchfully.CustomerRepository;
 import com.switchfully.customer.dto.CreateCustomerDto;
 import com.switchfully.customer.dto.CustomerDto;
 import com.switchfully.customer.dto.CustomerDtoMapper;
+import com.switchfully.customer.exception.EmailAlreadyUsedException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,6 +31,20 @@ class CustomerServiceTest {
         CustomerDto actual = customerService.getCustomerById(expected.id());
 
         Assertions.assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    void addCustomer_givenCreateCustomDtoWithAlreadyUsedEmail_thenEmailAlreadyUsedExceptionIsThrown() {
+        CreateCustomerDto createCustomerDto1 =
+                new CreateCustomerDto("Customer", "One", "customer@one.com",
+                        new Address("Customer Street", "8B", "Customer Town", "6666"), "048653216");
+        customerService.addCustomer(createCustomerDto1);
+
+        CreateCustomerDto createCustomerDto2 =
+                new CreateCustomerDto("Customer", "Two", "customer@one.com",
+                        new Address("Customer Street", "8B", "Customer Town", "6666"), "048653216");
+
+        Assertions.assertThatExceptionOfType(EmailAlreadyUsedException.class).isThrownBy(() -> customerService.addCustomer(createCustomerDto2));
     }
 
     @Test
