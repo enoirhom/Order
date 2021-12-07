@@ -26,8 +26,7 @@ public class CustomerService {
     }
 
     public CustomerDto getCustomerById(String id) {
-        Customer customer = customerRepository.getCustomerWith(id);
-        return customerDtoMapper.mapToDto(customer);
+        return customerDtoMapper.mapToDto(customerRepository.getCustomerById(id));
     }
 
 }

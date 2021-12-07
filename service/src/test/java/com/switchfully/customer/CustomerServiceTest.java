@@ -26,7 +26,6 @@ class CustomerServiceTest {
         CustomerDto customerDto = customerService.addCustomer(createCustomerDto);
         CustomerDto actual = customerService.getCustomerById(customerDto.id());
 
-
         Assertions.assertThat(actual).isEqualTo(customerDto);
     }
 }
