@@ -28,9 +28,9 @@ class SecurityServiceTest {
     }
 
     void setupCustomers() {
-        Address randomAddress = new Address("Castle Street", "8B", "Winterfell", "6666");
-        knownCustomer = new Customer("Jon", "Snow", "jon@snow.com", randomAddress,"046532165");
-        unknownCustomer = new Customer("Unknown", "Randon", "unknown@random.com", randomAddress,"046532165");
+        Address randomAddress = new Address("Customer Street", "8B", "Customer Town", "6666");
+        knownCustomer = new Customer("Customer", "One", "customer@one.com", randomAddress,"046532165");
+        unknownCustomer = new Customer("Unknown", "Random", "unknown@random.com", randomAddress,"046532165");
     }
 
     void setupRepository() {

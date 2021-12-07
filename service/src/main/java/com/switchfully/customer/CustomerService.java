@@ -5,8 +5,12 @@ import com.switchfully.CustomerRepository;
 import com.switchfully.customer.dto.CreateCustomerDto;
 import com.switchfully.customer.dto.CustomerDto;
 import com.switchfully.customer.dto.CustomerDtoMapper;
+import com.switchfully.customer.exception.EmailAlreadyUsedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CustomerService {
@@ -29,4 +33,10 @@ public class CustomerService {
         return customerDtoMapper.mapToDto(customerRepository.getCustomerById(id));
     }
 
+    public List<CustomerDto> getAllCustomers() {
+        return customerRepository.getAllCustomers()
+                .stream()
+                .map(customerDtoMapper::mapToDto)
+                .collect(Collectors.toList());
+    }
 }

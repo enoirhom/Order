@@ -2,6 +2,7 @@ package com.switchfully;
 
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -26,5 +27,9 @@ public class CustomerRepository {
                 .filter(customer -> customer.getEmail().equals(email))
                 .findFirst()
                 .orElse(null);
+    }
+
+    public List<Customer> getAllCustomers() {
+        return customers.values().stream().toList();
     }
 }
