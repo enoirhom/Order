@@ -1,4 +1,4 @@
-package com.switchfully;
+package com.switchfully.user;
 
 import com.switchfully.user.Address;
 import com.switchfully.user.Customer;
