@@ -1,7 +1,5 @@
 package com.switchfully.user;
 
-import com.switchfully.user.Address;
-import com.switchfully.user.Customer;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
