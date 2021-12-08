@@ -2,7 +2,7 @@ package com.switchfully.item;
 
 import java.time.LocalDate;
 
-public class OrderItem {
+public class ItemGroup {
     private static final int NORMAL_SHIPPING_DELAY = 1;
     private static final int OUT_OF_STOCK_SHIPPING_DELAY = 7;
 
@@ -11,7 +11,7 @@ public class OrderItem {
     private final double price;
     private final LocalDate shippingDate;
 
-    public OrderItem(StockItem stockItem, int quantity) {
+    public ItemGroup(StockItem stockItem, int quantity) {
         this.item = stockItem.item;
         this.quantity = quantity;
         this.price = stockItem.getPrice();
