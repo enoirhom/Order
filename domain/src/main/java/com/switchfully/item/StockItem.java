@@ -5,8 +5,8 @@ public class StockItem {
     private int quantity;
     private double price;
 
-    public StockItem(Item item, int quantity, double price) {
-        this.item = item;
+    public StockItem(String name, String description, int quantity, double price) {
+        this.item = new Item(name, description);
         this.quantity = quantity;
         this.price = price;
     }
