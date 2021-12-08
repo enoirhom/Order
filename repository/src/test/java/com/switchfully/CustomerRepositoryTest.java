@@ -14,12 +14,12 @@ class CustomerRepositoryTest {
     @BeforeEach
     void setup() {
         customerRepository = new CustomerRepository();
-        randomAddress = new Address("Castle Street", "8B", "Winterfell", "6666");
+        randomAddress = new Address("Customer Street", "8B", "Customer Town", "6666");
     }
 
     @Test
     void addCustomer_givenCustomer_thenGetCustomerReturnsCustomer() {
-        Customer customer = new Customer("Jon", "Snow", "jon@snow.com", randomAddress,"046532165");
+        Customer customer = new Customer("Customer1", "Customer", "customer1@customer.com", randomAddress,"046532165");
 
         customerRepository.addCustomer(customer);
         Customer actual = customerRepository.getCustomerById(customer.getId());
