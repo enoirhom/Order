@@ -1,7 +1,6 @@
 package com.switchfully.user;
 
 public class Admin implements Authorizable {
-
     private final String email;
 
     public Admin(String email) {
