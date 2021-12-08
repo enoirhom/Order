@@ -1,14 +1,25 @@
 package com.switchfully.item;
 
+import java.time.LocalDate;
+
 public class OrderItem {
     private final Item item;
     private final int quantity;
     private final double price;
+    private final LocalDate shippingDate;
 
     public OrderItem(StockItem stockItem, int quantity) {
         this.item = stockItem.item;
         this.quantity = quantity;
         this.price = stockItem.getPrice();
+        this.shippingDate = calculateShippingDate(stockItem.getQuantity(), quantity);
+    }
+
+    private LocalDate calculateShippingDate(int stockQuantity, int orderQuantity) {
+        if (stockQuantity >= orderQuantity) {
+            return LocalDate.now();
+        }
+        return LocalDate.now().plusDays(7);
     }
 
     public String getId() {
