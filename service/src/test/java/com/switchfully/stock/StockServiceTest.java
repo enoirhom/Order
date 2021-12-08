@@ -2,7 +2,6 @@ package com.switchfully.stock;
 
 
 import com.switchfully.StockRepository;
-import com.switchfully.customer.dto.CustomerDto;
 import com.switchfully.stock.dto.CreateStockItemDto;
 import com.switchfully.stock.dto.StockItemDto;
 import com.switchfully.stock.dto.StockItemDtoMapper;
