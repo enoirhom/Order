@@ -11,10 +11,10 @@ class CustomerTest {
     class CustomerCreation {
         @Test
         void customerCreation_givenValidValues_thenCustomerIsCreated() {
-            String firstname = "Jon";
-            String lastname = "Snow";
-            String email = "jon@snow.com";
-            Address address = new Address("Castle Street", "8B", "Winterfell", "6666");
+            String firstname = "Customer1";
+            String lastname = "Customer";
+            String email = "customer1@customer.com";
+            Address address = new Address("Customer Street", "8B", "Customer Town", "6666");
             String phoneNumber = "0489/123123";
 
             Customer actual = new Customer(firstname, lastname, email, address, phoneNumber);
