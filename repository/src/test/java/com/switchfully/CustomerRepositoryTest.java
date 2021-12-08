@@ -1,6 +1,8 @@
 package com.switchfully;
 
 
+import com.switchfully.user.Address;
+import com.switchfully.user.Customer;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

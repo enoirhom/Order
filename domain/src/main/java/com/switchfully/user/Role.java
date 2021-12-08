@@ -1,4 +1,4 @@
-package com.switchfully;
+package com.switchfully.user;
 
 public enum Role {
     CUSTOMER(1), ADMIN(2);

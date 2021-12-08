@@ -1,9 +1,9 @@
 package com.switchfully.security;
 
-import com.switchfully.Admin;
-import com.switchfully.Authorizable;
+import com.switchfully.user.Admin;
+import com.switchfully.user.Authorizable;
 import com.switchfully.CustomerRepository;
-import com.switchfully.Role;
+import com.switchfully.user.Role;
 import com.switchfully.security.exception.UnauthorizedAccessException;
 import com.switchfully.security.exception.UnknownUserException;
 import org.springframework.beans.factory.annotation.Autowired;

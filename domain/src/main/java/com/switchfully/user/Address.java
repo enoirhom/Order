@@ -1,4 +1,4 @@
-package com.switchfully;
+package com.switchfully.user;
 
 import java.util.Objects;
 

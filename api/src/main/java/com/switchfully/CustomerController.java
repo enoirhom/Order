@@ -4,6 +4,7 @@ import com.switchfully.customer.CustomerService;
 import com.switchfully.customer.dto.CreateCustomerDto;
 import com.switchfully.customer.dto.CustomerDto;
 import com.switchfully.security.SecurityService;
+import com.switchfully.user.Role;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

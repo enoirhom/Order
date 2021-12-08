@@ -1,10 +1,10 @@
 package com.switchfully.security;
 
 
-import com.switchfully.Address;
-import com.switchfully.Customer;
+import com.switchfully.user.Address;
+import com.switchfully.user.Customer;
 import com.switchfully.CustomerRepository;
-import com.switchfully.Role;
+import com.switchfully.user.Role;
 import com.switchfully.security.exception.UnauthorizedAccessException;
 import com.switchfully.security.exception.UnknownUserException;
 import org.assertj.core.api.Assertions;

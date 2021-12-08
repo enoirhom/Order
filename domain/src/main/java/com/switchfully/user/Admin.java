@@ -1,4 +1,4 @@
-package com.switchfully;
+package com.switchfully.user;
 
 public class Admin implements Authorizable {
 

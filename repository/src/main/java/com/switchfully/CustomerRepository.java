@@ -1,5 +1,6 @@
 package com.switchfully;
 
+import com.switchfully.user.Customer;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
