@@ -18,7 +18,7 @@ class CustomerRepositoryTest {
     }
 
     @Test
-    void addCustomer_givenCustomer_thenGetCustomerReturnsCustomer() {
+    void addCustomer_givenValidCustomer_thenGetCustomerReturnsCustomer() {
         Customer customer = new Customer("Customer1", "Customer", "customer1@customer.com", randomAddress,"046532165");
 
         customerRepository.addCustomer(customer);
