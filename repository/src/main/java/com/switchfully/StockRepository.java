@@ -1,11 +1,13 @@
 package com.switchfully;
 
 import com.switchfully.item.StockItem;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+@Repository
 public class StockRepository {
     private final Map<String, StockItem> stockItems;
 
