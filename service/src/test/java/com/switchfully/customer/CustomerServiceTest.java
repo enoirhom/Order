@@ -1,11 +1,11 @@
 package com.switchfully.customer;
 
-import com.switchfully.user.Address;
 import com.switchfully.CustomerRepository;
 import com.switchfully.customer.dto.CreateCustomerDto;
 import com.switchfully.customer.dto.CustomerDto;
 import com.switchfully.customer.dto.CustomerDtoMapper;
 import com.switchfully.customer.exception.EmailAlreadyUsedException;
+import com.switchfully.user.Address;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,7 +28,7 @@ class CustomerServiceTest {
                         new Address("Customer Street", "8B", "Customer Town", "6666"), "048653216");
 
         CustomerDto expected = customerService.addCustomer(createCustomerDto);
-        CustomerDto actual = customerService.getCustomerById(expected.id());
+        CustomerDto actual = customerService.getCustomerDtoById(expected.id());
 
         Assertions.assertThat(actual).isEqualTo(expected);
     }
@@ -51,7 +51,7 @@ class CustomerServiceTest {
     void getAllCustomers_thenReturnsAllCustomersDto() {
         List<CustomerDto> expected = add3Customers();
 
-        List<CustomerDto> actual = customerService.getAllCustomers();
+        List<CustomerDto> actual = customerService.getAllCustomersDto();
 
         actual.forEach(customerDto -> Assertions.assertThat(customerDto).isIn(expected));
     }

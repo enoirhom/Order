@@ -37,7 +37,7 @@ public class CustomerController {
     @ResponseStatus(HttpStatus.OK)
     List<CustomerDto> getAllCustomers(@RequestHeader(value = "authorization", required = false) String authorization) {
         securityService.validate(authorization, Role.ADMIN);
-        return customerService.getAllCustomers();
+        return customerService.getAllCustomersDto();
     }
 
 }

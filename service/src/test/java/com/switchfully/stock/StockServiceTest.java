@@ -25,7 +25,7 @@ class StockServiceTest {
         CreateStockItemDto createStockItemDto = new CreateStockItemDto("Item1", "Item1 description", 10, 49.99);
 
         StockItemDto expected = stockService.addStockItem(createStockItemDto);
-        StockItemDto actual = stockService.getStockItemById(expected.id());
+        StockItemDto actual = stockService.getStockDtoItemById(expected.id());
 
         Assertions.assertThat(actual).isEqualTo(expected);
     }

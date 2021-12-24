@@ -49,4 +49,9 @@ public class Customer implements Authorizable {
     public boolean isAuthorized(Role role) {
         return this.role.rank >= role.rank;
     }
+
+    @Override
+    public boolean isAuthorized(Role expectedRole, String userId) {
+        return isAuthorized(expectedRole) && id.equals(userId);
+    }
 }

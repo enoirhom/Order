@@ -32,11 +32,15 @@ public class CustomerService {
         return customerDtoMapper.mapToDto(customerToAdd);
     }
 
-    public CustomerDto getCustomerById(String id) {
-        return customerDtoMapper.mapToDto(customerRepository.getCustomerById(id));
+    public Customer getCustomerById(String id) {
+        return customerRepository.getCustomerById(id);
     }
 
-    public List<CustomerDto> getAllCustomers() {
+    public CustomerDto getCustomerDtoById(String id) {
+        return customerDtoMapper.mapToDto(getCustomerById(id));
+    }
+
+    public List<CustomerDto> getAllCustomersDto() {
         return customerRepository.getAllCustomers()
                 .stream()
                 .map(customerDtoMapper::mapToDto)

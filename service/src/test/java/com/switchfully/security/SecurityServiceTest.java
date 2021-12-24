@@ -46,10 +46,24 @@ class SecurityServiceTest {
     }
 
     @Test
+    void validateAdminRole_givenAdminAuthorizationAndId_thenNoExceptionIsThrown() {
+        String authorisation = generateAdminAuthorization();
+
+        Assertions.assertThatNoException().isThrownBy(() -> securityService.validate(authorisation, Role.ADMIN, knownCustomer.getId()));
+    }
+
+    @Test
     void validateCustomerRole_givenCustomerAuthorization_thenNoExceptionIsThrown() {
         String authorisation = generateKnownCustomerAuthorization();
 
         Assertions.assertThatNoException().isThrownBy(() -> securityService.validate(authorisation, Role.CUSTOMER));
+    }
+
+    @Test
+    void validateCustomerRole_givenCustomerAuthorizationAndId_thenNoExceptionIsThrown() {
+        String authorisation = generateKnownCustomerAuthorization();
+
+        Assertions.assertThatNoException().isThrownBy(() -> securityService.validate(authorisation, Role.CUSTOMER, knownCustomer.getId()));
     }
 
     @Test
@@ -60,6 +74,13 @@ class SecurityServiceTest {
     }
 
     @Test
+    void validate_givenUnknownAuthorizationAndId_thenUnknownUserExceptionIsThrown() {
+        String authorisation = generateUnknownCustomerAuthorization();
+
+        Assertions.assertThatExceptionOfType(UnknownUserException.class).isThrownBy(() -> securityService.validate(authorisation, Role.CUSTOMER, knownCustomer.getId()));
+    }
+
+    @Test
     void validateAdminRole_givenCustomerAuthorization_thenUnauthorizedAccessException() {
         String authorisation = generateKnownCustomerAuthorization();
 
@@ -67,10 +88,24 @@ class SecurityServiceTest {
     }
 
     @Test
+    void validateAdminRole_givenCustomerAuthorizationAndId_thenUnauthorizedAccessException() {
+        String authorisation = generateKnownCustomerAuthorization();
+
+        Assertions.assertThatExceptionOfType(UnauthorizedAccessException.class).isThrownBy(() -> securityService.validate(authorisation, Role.ADMIN, knownCustomer.getId()));
+    }
+
+    @Test
     void validateAnyRole_givenNoAuthorization_thenUnknownUserExceptionIsThrown() {
         String authorisation = null;
         Assertions.assertThatExceptionOfType(UnknownUserException.class).isThrownBy(() -> securityService.validate(authorisation, Role.CUSTOMER));
         Assertions.assertThatExceptionOfType(UnknownUserException.class).isThrownBy(() -> securityService.validate(authorisation, Role.ADMIN));
+    }
+
+    @Test
+    void validateAnyRole_givenNoAuthorizationAndId_thenUnknownUserExceptionIsThrown() {
+        String authorisation = null;
+        Assertions.assertThatExceptionOfType(UnknownUserException.class).isThrownBy(() -> securityService.validate(authorisation, Role.CUSTOMER, knownCustomer.getId()));
+        Assertions.assertThatExceptionOfType(UnknownUserException.class).isThrownBy(() -> securityService.validate(authorisation, Role.ADMIN, knownCustomer.getId()));
     }
 
     private String generateAdminAuthorization() {

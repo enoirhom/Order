@@ -27,6 +27,11 @@ public class SecurityService {
         validateAccess(user, role);
     }
 
+    public void validate(String authorization, Role role, String userId) {
+        Authorizable user = findAuthorizableWith(authorization);
+        validateAccess(user, role, userId);
+    }
+
     private Authorizable findAuthorizableWith(String authorization) {
         if (authorization == null) {
             throw new UnknownUserException("No authorization provided");
@@ -52,4 +57,9 @@ public class SecurityService {
         }
     }
 
+    private void validateAccess(Authorizable authorizable, Role role, String userId) {
+        if (!authorizable.isAuthorized(role, userId)) {
+            throw new UnauthorizedAccessException("Access to functionality denied.");
+        }
+    }
 }

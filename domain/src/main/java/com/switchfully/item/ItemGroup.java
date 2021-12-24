@@ -8,13 +8,13 @@ public class ItemGroup {
 
     private final Item item;
     private final int quantity;
-    private final double price;
+    private final double unitPrice;
     private final LocalDate shippingDate;
 
     public ItemGroup(StockItem stockItem, int quantity) {
         this.item = stockItem.item;
         this.quantity = quantity;
-        this.price = stockItem.getPrice();
+        this.unitPrice = stockItem.getPrice();
         this.shippingDate = calculateShippingDate(stockItem.getQuantity(), quantity);
     }
 
@@ -41,7 +41,15 @@ public class ItemGroup {
         return quantity;
     }
 
+    public double getUnitPrice() {
+        return unitPrice;
+    }
+
     public double getPrice() {
-        return price;
+        return unitPrice * quantity;
+    }
+
+    public LocalDate getShippingDate() {
+        return shippingDate;
     }
 }

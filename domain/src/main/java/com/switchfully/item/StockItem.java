@@ -3,7 +3,7 @@ package com.switchfully.item;
 public class StockItem {
     final Item item;
     private int quantity;
-    private double price;
+    private final double price;
 
     public StockItem(String name, String description, int quantity, double price) {
         this.item = new Item(name, description);
@@ -31,11 +31,11 @@ public class StockItem {
         return price;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void removeQuantityFromStock(int quantity) {
+        this.quantity -= quantity;
+        if (this.quantity < 0) {
+            this.quantity = 0;
+        }
     }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
 }

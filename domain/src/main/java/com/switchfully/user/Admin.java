@@ -15,4 +15,9 @@ public class Admin implements Authorizable {
     public boolean isAuthorized(Role role) {
         return true;
     }
+
+    @Override
+    public boolean isAuthorized(Role expectedRole, String userId) {
+        return true;
+    }
 }

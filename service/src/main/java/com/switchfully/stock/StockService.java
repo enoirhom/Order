@@ -28,8 +28,12 @@ public class StockService {
         return stockItemDtoMapper.mapToDto(stockItemToAdd);
     }
 
-    public StockItemDto getStockItemById(String id) {
-        return stockItemDtoMapper.mapToDto(stockRepository.getItemById(id));
+    public StockItem getStockItemById(String id) {
+        return stockRepository.getItemById(id);
+    }
+
+    public StockItemDto getStockDtoItemById(String id) {
+        return stockItemDtoMapper.mapToDto(getStockItemById(id));
     }
 
     public List<StockItemDto> getAllItems() {
