@@ -1,5 +1,6 @@
-package com.switchfully;
+package com.switchfully.customer;
 
+import com.switchfully.customer.CustomerRepository;
 import com.switchfully.user.Customer;
 import org.springframework.stereotype.Repository;
 
@@ -8,10 +9,10 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
-public class CustomerRepository {
+public class CustomerRepositoryStub implements CustomerRepository {
     private final Map<String, Customer> customers;
 
-    public CustomerRepository() {
+    public CustomerRepositoryStub() {
         customers = new ConcurrentHashMap<>();
     }
 

@@ -2,6 +2,8 @@ package com.switchfully;
 
 
 import com.switchfully.item.StockItem;
+import com.switchfully.item.StockRepository;
+import com.switchfully.item.StockRepositoryJpa;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,7 +16,7 @@ class StockRepositoryTest {
 
     @BeforeEach
     void setup() {
-        stockRepository = new StockRepository();
+        stockRepository = new StockRepositoryJpa();
     }
 
     @Test

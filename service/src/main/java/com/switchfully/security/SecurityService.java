@@ -2,7 +2,7 @@ package com.switchfully.security;
 
 import com.switchfully.user.Admin;
 import com.switchfully.user.Authorizable;
-import com.switchfully.CustomerRepository;
+import com.switchfully.customer.CustomerRepository;
 import com.switchfully.user.Role;
 import com.switchfully.security.exception.UnauthorizedAccessException;
 import com.switchfully.security.exception.UnknownUserException;

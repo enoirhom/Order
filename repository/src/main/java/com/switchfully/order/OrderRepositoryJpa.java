@@ -1,21 +1,23 @@
-package com.switchfully;
+package com.switchfully.order;
 
-import com.switchfully.order.Order;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
-public class OrderRepository {
+@Profile("!test")
+public class OrderRepositoryJpa implements OrderRepository {
     private final Map<String, Order> orders;
 
     @Autowired
-    public OrderRepository() {
+    public OrderRepositoryJpa() {
         this.orders = new ConcurrentHashMap<>();
     }
 
+    @Override
     public void addOrder(Order order) {
         orders.put(order.getId(), order);
     }

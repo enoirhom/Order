@@ -1,7 +1,6 @@
 package com.switchfully.customer;
 
 import com.switchfully.user.Customer;
-import com.switchfully.CustomerRepository;
 import com.switchfully.customer.dto.CreateCustomerDto;
 import com.switchfully.customer.dto.CustomerDto;
 import com.switchfully.customer.dto.CustomerDtoMapper;

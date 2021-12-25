@@ -1,6 +1,5 @@
 package com.switchfully.customer;
 
-import com.switchfully.CustomerRepository;
 import com.switchfully.customer.dto.CreateCustomerDto;
 import com.switchfully.customer.dto.CustomerDto;
 import com.switchfully.customer.dto.CustomerDtoMapper;
@@ -18,7 +17,7 @@ class CustomerServiceTest {
 
     @BeforeEach
     void setup() {
-        customerService = new CustomerService(new CustomerRepository(), new CustomerDtoMapper());
+        customerService = new CustomerService(new CustomerRepositoryStub(), new CustomerDtoMapper());
     }
 
     @Test

@@ -1,7 +1,7 @@
 package com.switchfully.stock;
 
 
-import com.switchfully.StockRepository;
+import com.switchfully.item.StockRepositoryStub;
 import com.switchfully.stock.dto.CreateStockItemDto;
 import com.switchfully.stock.dto.StockItemDto;
 import com.switchfully.stock.dto.StockItemDtoMapper;
@@ -17,7 +17,7 @@ class StockServiceTest {
 
     @BeforeEach
     void setup() {
-        stockService = new StockService(new StockRepository(), new StockItemDtoMapper());
+        stockService = new StockService(new StockRepositoryStub(), new StockItemDtoMapper());
     }
 
     @Test

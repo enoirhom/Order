@@ -1,6 +1,8 @@
 package com.switchfully;
 
 
+import com.switchfully.customer.CustomerRepository;
+import com.switchfully.customer.CustomerRepositoryJpa;
 import com.switchfully.user.Address;
 import com.switchfully.user.Customer;
 import org.assertj.core.api.Assertions;
@@ -16,7 +18,7 @@ class CustomerRepositoryTest {
 
     @BeforeEach
     void setup() {
-        customerRepository = new CustomerRepository();
+        customerRepository = new CustomerRepositoryJpa();
         randomAddress = new Address("Customer Street", "8B", "Customer Town", "6666");
     }
 

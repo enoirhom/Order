@@ -1,9 +1,10 @@
 package com.switchfully.security;
 
 
+import com.switchfully.customer.CustomerRepositoryJpa;
 import com.switchfully.user.Address;
 import com.switchfully.user.Customer;
-import com.switchfully.CustomerRepository;
+import com.switchfully.customer.CustomerRepository;
 import com.switchfully.user.Role;
 import com.switchfully.security.exception.UnauthorizedAccessException;
 import com.switchfully.security.exception.UnknownUserException;
@@ -34,7 +35,7 @@ class SecurityServiceTest {
     }
 
     void setupRepository() {
-        customerRepository = new CustomerRepository();
+        customerRepository = new CustomerRepositoryJpa();
         customerRepository.addCustomer(knownCustomer);
     }
 

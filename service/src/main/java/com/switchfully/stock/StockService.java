@@ -1,6 +1,6 @@
 package com.switchfully.stock;
 
-import com.switchfully.StockRepository;
+import com.switchfully.item.StockRepository;
 import com.switchfully.item.StockItem;
 import com.switchfully.stock.dto.CreateStockItemDto;
 import com.switchfully.stock.dto.StockItemDto;

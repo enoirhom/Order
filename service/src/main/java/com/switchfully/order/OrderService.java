@@ -1,6 +1,5 @@
 package com.switchfully.order;
 
-import com.switchfully.OrderRepository;
 import com.switchfully.customer.CustomerService;
 import com.switchfully.item.ItemGroup;
 import com.switchfully.item.StockItem;
