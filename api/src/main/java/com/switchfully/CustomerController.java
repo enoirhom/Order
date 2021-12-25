@@ -37,4 +37,11 @@ public class CustomerController {
         return customerService.getAllCustomersDto();
     }
 
+    @GetMapping(path = "{id}",produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    CustomerDto getCustomerById(@PathVariable String id, @RequestHeader String authorization) {
+        securityService.validate(authorization, Role.ADMIN);
+        return customerService.getCustomerDtoById(id);
+    }
+
 }
