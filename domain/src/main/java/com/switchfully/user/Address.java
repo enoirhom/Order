@@ -1,7 +1,5 @@
 package com.switchfully.user;
 
-import java.util.Objects;
-
 public class Address {
     private final String street;
     private final String house;
