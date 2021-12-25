@@ -1,6 +1,5 @@
 package com.switchfully.customer;
 
-import com.switchfully.customer.CustomerRepository;
 import com.switchfully.user.Customer;
 import org.springframework.stereotype.Repository;
 

@@ -2,6 +2,7 @@ package com.switchfully.security;
 
 
 import com.switchfully.customer.CustomerRepositoryJpa;
+import com.switchfully.customer.CustomerRepositoryStub;
 import com.switchfully.user.Address;
 import com.switchfully.user.Customer;
 import com.switchfully.customer.CustomerRepository;
@@ -35,7 +36,7 @@ class SecurityServiceTest {
     }
 
     void setupRepository() {
-        customerRepository = new CustomerRepositoryJpa();
+        customerRepository = new CustomerRepositoryStub();
         customerRepository.addCustomer(knownCustomer);
     }
 
