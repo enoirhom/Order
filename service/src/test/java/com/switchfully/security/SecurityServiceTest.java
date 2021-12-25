@@ -1,14 +1,13 @@
 package com.switchfully.security;
 
 
-import com.switchfully.customer.CustomerRepositoryJpa;
-import com.switchfully.customer.CustomerRepositoryStub;
-import com.switchfully.user.Address;
-import com.switchfully.user.Customer;
 import com.switchfully.customer.CustomerRepository;
-import com.switchfully.user.Role;
+import com.switchfully.customer.CustomerRepositoryStub;
 import com.switchfully.security.exception.UnauthorizedAccessException;
 import com.switchfully.security.exception.UnknownUserException;
+import com.switchfully.user.Address;
+import com.switchfully.user.Customer;
+import com.switchfully.user.Role;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
