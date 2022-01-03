@@ -3,7 +3,8 @@ package com.switchfully.customer;
 import com.switchfully.customer.dto.CreateCustomerDto;
 import com.switchfully.customer.dto.CustomerDto;
 import com.switchfully.customer.dto.CustomerDtoMapper;
-import com.switchfully.customer.exception.EmailAlreadyUsedException;
+import com.switchfully.exception.EmailAlreadyUsedException;
+import com.switchfully.exception.UnknownUserException;
 import com.switchfully.user.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,6 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
-
 @Transactional
 public class CustomerService {
     private final CustomerRepository customerRepository;
@@ -37,7 +37,10 @@ public class CustomerService {
     }
 
     public Customer getCustomerById(String id) {
-        return customerRepository.findCustomerById(UUID.fromString(id));
+        if (customerRepository.findCustomerById(UUID.fromString(id)).isPresent()) {
+            return customerRepository.findCustomerById(UUID.fromString(id)).get();
+        }
+        throw new UnknownUserException("User not found.");
     }
 
     public CustomerDto getCustomerDtoById(String id) {

@@ -3,7 +3,7 @@ package com.switchfully.customer;
 import com.switchfully.customer.dto.CreateCustomerDto;
 import com.switchfully.customer.dto.CustomerDto;
 import com.switchfully.customer.dto.CustomerDtoMapper;
-import com.switchfully.customer.exception.EmailAlreadyUsedException;
+import com.switchfully.exception.EmailAlreadyUsedException;
 import com.switchfully.stub.CustomerRepositoryStub;
 import com.switchfully.user.Address;
 import org.assertj.core.api.Assertions;

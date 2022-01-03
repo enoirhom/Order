@@ -1,4 +1,4 @@
-package com.switchfully.security.exception;
+package com.switchfully.exception;
 
 public class UnknownUserException extends RuntimeException {
     public UnknownUserException(String message) {

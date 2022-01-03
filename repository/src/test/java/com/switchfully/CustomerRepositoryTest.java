@@ -30,9 +30,9 @@ class CustomerRepositoryTest {
         Customer customer = new Customer("Customer1", "Customer", "customer1@customer.com", randomAddress,"046532165");
 
         customerRepository.addCustomer(customer);
-        Customer actual = customerRepository.findCustomerById(customer.getId());
+        Optional<Customer> actual = customerRepository.findCustomerById(customer.getId());
 
-        Assertions.assertThat(actual).isEqualTo(customer);
+        Assertions.assertThat(actual).isPresent().get().isEqualTo(customer);
     }
 
     @Test

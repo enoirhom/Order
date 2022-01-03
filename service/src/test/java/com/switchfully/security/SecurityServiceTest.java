@@ -3,8 +3,8 @@ package com.switchfully.security;
 
 import com.switchfully.customer.CustomerRepository;
 import com.switchfully.stub.CustomerRepositoryStub;
-import com.switchfully.security.exception.UnauthorizedAccessException;
-import com.switchfully.security.exception.UnknownUserException;
+import com.switchfully.exception.UnauthorizedAccessException;
+import com.switchfully.exception.UnknownUserException;
 import com.switchfully.user.Address;
 import com.switchfully.user.Customer;
 import com.switchfully.user.Role;

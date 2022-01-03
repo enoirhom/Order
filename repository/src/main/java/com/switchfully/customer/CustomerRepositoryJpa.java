@@ -1,7 +1,6 @@
 package com.switchfully.customer;
 
 import com.switchfully.user.Customer;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -22,8 +21,12 @@ public class CustomerRepositoryJpa implements CustomerRepository {
     }
 
     @Override
-    public Customer findCustomerById(UUID id) {
-        return entityManager.find(Customer.class, id);
+    public Optional<Customer> findCustomerById(UUID id) {
+        Customer customer = entityManager.find(Customer.class, id);
+        if (customer == null) {
+            return Optional.empty();
+        }
+        return Optional.of(customer);
     }
 
     @Override

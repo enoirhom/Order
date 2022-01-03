@@ -22,8 +22,13 @@ public class CustomerRepositoryStub implements CustomerRepository {
         customers.put(customer.getId(), customer);
     }
 
-    public Customer findCustomerById(UUID id) {
-        return customers.get(id);
+    public Optional<Customer> findCustomerById(UUID id) {
+        Customer customer = customers.get(id);
+
+        if (customer == null) {
+            return Optional.empty();
+        }
+        return Optional.of(customer);
     }
 
     public Optional<Customer> findCustomerByEmail(String email) {

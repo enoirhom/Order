@@ -4,8 +4,8 @@ import com.switchfully.user.Admin;
 import com.switchfully.user.Authorizable;
 import com.switchfully.customer.CustomerRepository;
 import com.switchfully.user.Role;
-import com.switchfully.security.exception.UnauthorizedAccessException;
-import com.switchfully.security.exception.UnknownUserException;
+import com.switchfully.exception.UnauthorizedAccessException;
+import com.switchfully.exception.UnknownUserException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public interface CustomerRepository {
     void addCustomer(Customer customer);
-    Customer findCustomerById(UUID id);
+    Optional<Customer> findCustomerById(UUID id);
     Optional<Customer> findCustomerByEmail(String email);
     List<Customer> getAllCustomers();
 }
