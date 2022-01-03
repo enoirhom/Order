@@ -3,9 +3,7 @@ package com.switchfully;
 
 import com.switchfully.item.Item;
 import com.switchfully.item.ItemRepository;
-import com.switchfully.item.ItemRepositoryJpa;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
