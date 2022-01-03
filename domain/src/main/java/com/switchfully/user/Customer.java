@@ -1,27 +1,45 @@
 package com.switchfully.user;
 
+import javax.persistence.*;
 import java.util.UUID;
 
+@Entity
+@Table(name = "customer")
 public class Customer implements Authorizable {
-    private final String id;
-    private final String firstname;
-    private final String lastname;
-    private final String email;
-    private final Address address;
-    private final String phoneNumber;
-    private final Role role;
+
+    @Id
+    @Column(name = "customer_id")
+    private UUID id;
+
+    @Column(name = "firstname")
+    private String firstname;
+
+    @Column(name = "lastname")
+    private String lastname;
+
+    @Column(name = "email")
+    private String email;
+
+    @Embedded
+    private Address address;
+
+    @Column(name = "phone_number")
+    private String phoneNumber;
 
     public Customer(String firstname, String lastname, String email, Address address, String phoneNumber) {
-        this.id = UUID.randomUUID().toString();
+        this.id = UUID.randomUUID();
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
         this.address = address;
         this.phoneNumber = phoneNumber;
-        this.role = Role.CUSTOMER;
     }
 
-    public String getId() {
+    protected Customer() {
+
+    }
+
+    public UUID getId() {
         return id;
     }
 
@@ -47,11 +65,11 @@ public class Customer implements Authorizable {
 
     @Override
     public boolean isAuthorized(Role role) {
-        return this.role.rank >= role.rank;
+        return Role.CUSTOMER.rank >= role.rank;
     }
 
     @Override
-    public boolean isAuthorized(Role expectedRole, String userId) {
+    public boolean isAuthorized(Role expectedRole, UUID userId) {
         return isAuthorized(expectedRole) && id.equals(userId);
     }
 }

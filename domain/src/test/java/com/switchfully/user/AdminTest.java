@@ -52,7 +52,7 @@ class AdminTest {
 
         @Test
         void isAuthorized_givenCustomerRoleAndCustomerId_thenReturnTrue() {
-            boolean actual = admin.isAuthorized(Role.CUSTOMER, UUID.randomUUID().toString());
+            boolean actual = admin.isAuthorized(Role.CUSTOMER, UUID.randomUUID());
 
             Assertions.assertThat(actual).isTrue();
         }

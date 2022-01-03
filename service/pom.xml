@@ -25,6 +25,12 @@
             <groupId>com.switchfully</groupId>
             <artifactId>repository</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.switchfully</groupId>
+            <artifactId>repository</artifactId>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
 </project>

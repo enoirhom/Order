@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Base64;
+import java.util.UUID;
 
 @Service
 public class SecurityService {
@@ -44,8 +45,8 @@ public class SecurityService {
             return admin;
         }
 
-        if (customerRepository.getCustomerByEmail(email) != null) {
-            return customerRepository.getCustomerByEmail(email);
+        if (customerRepository.findCustomerByEmail(email).isPresent()) {
+            return customerRepository.findCustomerByEmail(email).get();
         }
 
         throw new UnknownUserException("Email " + email + " is invalid.");
@@ -58,7 +59,7 @@ public class SecurityService {
     }
 
     private void validateAccess(Authorizable authorizable, Role role, String userId) {
-        if (!authorizable.isAuthorized(role, userId)) {
+        if (!authorizable.isAuthorized(role, UUID.fromString(userId))) {
             throw new UnauthorizedAccessException("Access to functionality denied.");
         }
     }

@@ -2,7 +2,7 @@ package com.switchfully.security;
 
 
 import com.switchfully.customer.CustomerRepository;
-import com.switchfully.customer.CustomerRepositoryStub;
+import com.switchfully.stub.CustomerRepositoryStub;
 import com.switchfully.security.exception.UnauthorizedAccessException;
 import com.switchfully.security.exception.UnknownUserException;
 import com.switchfully.user.Address;
@@ -29,7 +29,7 @@ class SecurityServiceTest {
     }
 
     void setupCustomers() {
-        Address randomAddress = new Address("Customer Street", "8B", "Customer Town", "6666");
+        Address randomAddress = new Address("Customer Street", "8B", "Customer Town", 6666);
         knownCustomer = new Customer("Customer", "One", "customer@one.com", randomAddress,"046532165");
         unknownCustomer = new Customer("Unknown", "Random", "unknown@random.com", randomAddress,"046532165");
     }
@@ -50,7 +50,7 @@ class SecurityServiceTest {
     void validateAdminRole_givenAdminAuthorizationAndId_thenNoExceptionIsThrown() {
         String authorisation = generateAdminAuthorization();
 
-        Assertions.assertThatNoException().isThrownBy(() -> securityService.validate(authorisation, Role.ADMIN, knownCustomer.getId()));
+        Assertions.assertThatNoException().isThrownBy(() -> securityService.validate(authorisation, Role.ADMIN, knownCustomer.getId().toString()));
     }
 
     @Test
@@ -64,7 +64,7 @@ class SecurityServiceTest {
     void validateCustomerRole_givenCustomerAuthorizationAndId_thenNoExceptionIsThrown() {
         String authorisation = generateKnownCustomerAuthorization();
 
-        Assertions.assertThatNoException().isThrownBy(() -> securityService.validate(authorisation, Role.CUSTOMER, knownCustomer.getId()));
+        Assertions.assertThatNoException().isThrownBy(() -> securityService.validate(authorisation, Role.CUSTOMER, knownCustomer.getId().toString()));
     }
 
     @Test
@@ -78,7 +78,7 @@ class SecurityServiceTest {
     void validate_givenUnknownAuthorizationAndId_thenUnknownUserExceptionIsThrown() {
         String authorisation = generateUnknownCustomerAuthorization();
 
-        Assertions.assertThatExceptionOfType(UnknownUserException.class).isThrownBy(() -> securityService.validate(authorisation, Role.CUSTOMER, knownCustomer.getId()));
+        Assertions.assertThatExceptionOfType(UnknownUserException.class).isThrownBy(() -> securityService.validate(authorisation, Role.CUSTOMER, knownCustomer.getId().toString()));
     }
 
     @Test
@@ -92,7 +92,7 @@ class SecurityServiceTest {
     void validateAdminRole_givenCustomerAuthorizationAndId_thenUnauthorizedAccessException() {
         String authorisation = generateKnownCustomerAuthorization();
 
-        Assertions.assertThatExceptionOfType(UnauthorizedAccessException.class).isThrownBy(() -> securityService.validate(authorisation, Role.ADMIN, knownCustomer.getId()));
+        Assertions.assertThatExceptionOfType(UnauthorizedAccessException.class).isThrownBy(() -> securityService.validate(authorisation, Role.ADMIN, knownCustomer.getId().toString()));
     }
 
     @Test
@@ -105,8 +105,8 @@ class SecurityServiceTest {
     @Test
     void validateAnyRole_givenNoAuthorizationAndId_thenUnknownUserExceptionIsThrown() {
         String authorisation = null;
-        Assertions.assertThatExceptionOfType(UnknownUserException.class).isThrownBy(() -> securityService.validate(authorisation, Role.CUSTOMER, knownCustomer.getId()));
-        Assertions.assertThatExceptionOfType(UnknownUserException.class).isThrownBy(() -> securityService.validate(authorisation, Role.ADMIN, knownCustomer.getId()));
+        Assertions.assertThatExceptionOfType(UnknownUserException.class).isThrownBy(() -> securityService.validate(authorisation, Role.CUSTOMER, knownCustomer.getId().toString()));
+        Assertions.assertThatExceptionOfType(UnknownUserException.class).isThrownBy(() -> securityService.validate(authorisation, Role.ADMIN, knownCustomer.getId().toString()));
     }
 
     private String generateAdminAuthorization() {

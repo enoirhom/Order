@@ -2,24 +2,27 @@ package com.switchfully;
 
 
 import com.switchfully.customer.CustomerRepository;
-import com.switchfully.customer.CustomerRepositoryJpa;
 import com.switchfully.user.Address;
 import com.switchfully.user.Customer;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+@DataJpaTest
 class CustomerRepositoryTest {
+    @Autowired
     CustomerRepository customerRepository;
     Address randomAddress;
 
     @BeforeEach
     void setup() {
-        customerRepository = new CustomerRepositoryJpa();
-        randomAddress = new Address("Customer Street", "8B", "Customer Town", "6666");
+        randomAddress = new Address("Customer Street", "8B", "Customer Town", 6666);
     }
 
     @Test
@@ -27,7 +30,7 @@ class CustomerRepositoryTest {
         Customer customer = new Customer("Customer1", "Customer", "customer1@customer.com", randomAddress,"046532165");
 
         customerRepository.addCustomer(customer);
-        Customer actual = customerRepository.getCustomerById(customer.getId());
+        Customer actual = customerRepository.findCustomerById(customer.getId());
 
         Assertions.assertThat(actual).isEqualTo(customer);
     }
@@ -37,18 +40,18 @@ class CustomerRepositoryTest {
         Customer customer = new Customer("Customer1", "Customer", "customer1@customer.com", randomAddress,"046532165");
 
         customerRepository.addCustomer(customer);
-        Customer actual = customerRepository.getCustomerByEmail(customer.getEmail());
+        Optional<Customer> actual = customerRepository.findCustomerByEmail(customer.getEmail());
 
-        Assertions.assertThat(actual).isEqualTo(customer);
+        Assertions.assertThat(actual).isPresent().get().isEqualTo(customer);
     }
 
     @Test
-    void getCustomerByEmail_givenNonExistingEmail_thenReturnNull() {
+    void getCustomerByEmail_givenNonExistingEmail_thenReturnEmptyOptional() {
         populateCustomerRepository();
 
-        Customer actual = customerRepository.getCustomerByEmail("unknow@email.com");
+        Optional<Customer> actual = customerRepository.findCustomerByEmail("unknow@email.com");
 
-        Assertions.assertThat(actual).isNull();
+        Assertions.assertThat(actual).isEmpty();
     }
 
     @Test

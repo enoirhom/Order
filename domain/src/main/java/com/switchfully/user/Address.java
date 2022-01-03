@@ -1,32 +1,48 @@
 package com.switchfully.user;
 
-public class Address {
-    private final String street;
-    private final String house;
-    private final String town;
-    private final String postCode;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 
-    public Address(String street, String house, String town, String postCode) {
+@Embeddable
+public class Address {
+
+    @Column(name = "street")
+    private String street;
+
+    @Column(name = "house_number")
+    private String houseNumber;
+
+    @Column(name = "city")
+    private String city;
+
+    @Column(name = "zip_code")
+    private int zipCode;
+
+    public Address(String street, String houseNumber, String city, int zipCode) {
         this.street = street;
-        this.house = house;
-        this.town = town;
-        this.postCode = postCode;
+        this.houseNumber = houseNumber;
+        this.city = city;
+        this.zipCode = zipCode;
+    }
+
+    protected Address() {
+
     }
 
     public String getStreet() {
         return street;
     }
 
-    public String getHouse() {
-        return house;
+    public String getHouseNumber() {
+        return houseNumber;
     }
 
-    public String getTown() {
-        return town;
+    public String getCity() {
+        return city;
     }
 
-    public String getPostCode() {
-        return postCode;
+    public int getZipCode() {
+        return zipCode;
     }
 
 }

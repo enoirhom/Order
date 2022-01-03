@@ -1,5 +1,7 @@
-package com.switchfully.order;
+package com.switchfully.stub;
 
+import com.switchfully.order.Order;
+import com.switchfully.order.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

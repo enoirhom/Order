@@ -1,6 +1,6 @@
 package com.switchfully.item;
 
-import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
-@Profile("!test")
+@Primary
 public class StockRepositoryJpa implements StockRepository {
     private final Map<String, StockItem> stockItems;
 

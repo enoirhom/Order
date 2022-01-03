@@ -1,14 +1,14 @@
 package com.switchfully.order;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
-@Profile("!test")
+@Primary
 public class OrderRepositoryJpa implements OrderRepository {
     private final Map<String, Order> orders;
 

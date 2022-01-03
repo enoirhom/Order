@@ -1,42 +1,41 @@
 package com.switchfully.customer;
 
 import com.switchfully.user.Customer;
-import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.Optional;
+import java.util.UUID;
 
 @Repository
-@Profile("!test")
 public class CustomerRepositoryJpa implements CustomerRepository {
-    private final Map<String, Customer> customers;
 
-    public CustomerRepositoryJpa() {
-        customers = new ConcurrentHashMap<>();
-    }
+    @PersistenceContext
+    EntityManager entityManager;
 
     @Override
     public void addCustomer(Customer customer) {
-        customers.put(customer.getId(), customer);
+        entityManager.persist(customer);
     }
 
     @Override
-    public Customer getCustomerById(String id) {
-        return customers.get(id);
+    public Customer findCustomerById(UUID id) {
+        return entityManager.find(Customer.class, id);
     }
 
     @Override
-    public Customer getCustomerByEmail(String email) {
-        return customers.values().stream()
-                .filter(customer -> customer.getEmail().equals(email))
-                .findFirst()
-                .orElse(null);
+    public Optional<Customer> findCustomerByEmail(String email) {
+        return entityManager.createQuery("select c from Customer c where c.email = :email", Customer.class)
+                .setParameter("email", email)
+                .getResultStream().findAny();
     }
 
     @Override
     public List<Customer> getAllCustomers() {
-        return customers.values().stream().toList();
+        return entityManager.createQuery("select c from Customer c", Customer.class)
+                .getResultList();
     }
 }

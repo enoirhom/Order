@@ -1,5 +1,7 @@
-package com.switchfully.item;
+package com.switchfully.stub;
 
+import com.switchfully.item.StockItem;
+import com.switchfully.item.StockRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

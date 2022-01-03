@@ -3,6 +3,7 @@ package com.switchfully;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.switchfully.customer.dto.CreateCustomerDto;
 import com.switchfully.customer.dto.CustomerDto;
+import com.switchfully.user.Address;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -25,6 +26,7 @@ class CustomerControllerTest {
     MockMvc mockMvc;
 
     ObjectMapper objectMapper = new ObjectMapper();
+    Address address = new Address("Street", "Number", "City", 6666);
 
     @Test
     void contextLoads() {
@@ -33,12 +35,12 @@ class CustomerControllerTest {
 
     @Test
     void addCustomer_givenCreateCustomerDto_thenReturnCustomerDtoJSON() throws Exception {
-        CreateCustomerDto createCustomerDto = new CreateCustomerDto("f", "l", "e", null, "p");
+        CreateCustomerDto createCustomerDto = new CreateCustomerDto("f", "l", "e", address, "p");
 
         mockMvc.perform(post("/customers")
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(new ObjectMapper().writeValueAsString(createCustomerDto)))
+                .content(objectMapper.writeValueAsString(createCustomerDto)))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.firstname").value(createCustomerDto.firstname()))
                 .andExpect(jsonPath("$.lastname").value(createCustomerDto.lastname()))
@@ -48,12 +50,12 @@ class CustomerControllerTest {
 
     @Test
     void getCustomerById_givenCustomerId_thenReturnCustomerDtoJSON() throws Exception {
-        CreateCustomerDto createCustomerDto = new CreateCustomerDto("f", "l", "em", null, "p");
+        CreateCustomerDto createCustomerDto = new CreateCustomerDto("f", "l", "em", address, "p");
 
         String response = mockMvc.perform(post("/customers")
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(new ObjectMapper().writeValueAsString(createCustomerDto)))
+                .content(objectMapper.writeValueAsString(createCustomerDto)))
                 .andReturn()
                 .getResponse()
                 .getContentAsString();

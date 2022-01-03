@@ -1,5 +1,7 @@
 package com.switchfully.user;
 
+import java.util.UUID;
+
 public class Admin implements Authorizable {
     private final String email;
 
@@ -17,7 +19,7 @@ public class Admin implements Authorizable {
     }
 
     @Override
-    public boolean isAuthorized(Role expectedRole, String userId) {
+    public boolean isAuthorized(Role expectedRole, UUID userId) {
         return true;
     }
 }

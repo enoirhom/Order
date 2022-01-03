@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.util.UUID;
 
 class CustomerTest {
 
@@ -15,7 +16,7 @@ class CustomerTest {
             String firstname = "Customer1";
             String lastname = "Customer";
             String email = "customer1@customer.com";
-            Address address = new Address("Customer Street", "8B", "Customer Town", "6666");
+            Address address = new Address("Customer Street", "8B", "Customer Town", 6666);
             String phoneNumber = "0489/123123";
 
             Customer actual = new Customer(firstname, lastname, email, address, phoneNumber);
@@ -37,7 +38,7 @@ class CustomerTest {
             String firstname = "Customer1";
             String lastname = "Customer";
             String email = "customer1@customer.com";
-            Address address = new Address("Customer Street", "8B", "Customer Town", "6666");
+            Address address = new Address("Customer Street", "8B", "Customer Town", 6666);
             String phoneNumber = "0489/123123";
 
             customer = new Customer(firstname, lastname, email, address, phoneNumber);
@@ -66,7 +67,7 @@ class CustomerTest {
 
         @Test
         void isAuthorized_givenCustomerRoleAndWrongCustomerId_thenReturnTrue() {
-            boolean actual = customer.isAuthorized(Role.CUSTOMER, "123654");
+            boolean actual = customer.isAuthorized(Role.CUSTOMER, UUID.randomUUID());
 
             Assertions.assertThat(actual).isFalse();
         }

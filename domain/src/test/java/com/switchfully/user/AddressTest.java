@@ -13,14 +13,14 @@ class AddressTest {
         String street;
         String house;
         String town;
-        String postCode;
+        int postCode;
 
         @BeforeEach
         void setUp() {
             street = "Customer Street";
             house = "8B";
             town = "Customer Town";
-            postCode = "6666";
+            postCode = 6666;
         }
 
         @Test
@@ -28,9 +28,9 @@ class AddressTest {
             Address actual = new Address(street, house, town, postCode);
 
             Assertions.assertThat(actual.getStreet()).isEqualTo(street);
-            Assertions.assertThat(actual.getHouse()).isEqualTo(house);
-            Assertions.assertThat(actual.getTown()).isEqualTo(town);
-            Assertions.assertThat(actual.getPostCode()).isEqualTo(postCode);
+            Assertions.assertThat(actual.getHouseNumber()).isEqualTo(house);
+            Assertions.assertThat(actual.getCity()).isEqualTo(town);
+            Assertions.assertThat(actual.getZipCode()).isEqualTo(postCode);
         }
     }
 }
