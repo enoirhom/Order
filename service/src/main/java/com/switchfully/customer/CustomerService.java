@@ -36,14 +36,14 @@ public class CustomerService {
         return customerDtoMapper.mapToDto(customerToAdd);
     }
 
-    public Customer getCustomerById(String id) {
-        if (customerRepository.findCustomerById(UUID.fromString(id)).isPresent()) {
-            return customerRepository.findCustomerById(UUID.fromString(id)).get();
+    public Customer getCustomerById(UUID id) {
+        if (customerRepository.findCustomerById(id).isPresent()) {
+            return customerRepository.findCustomerById(id).get();
         }
         throw new UnknownUserException("User not found.");
     }
 
-    public CustomerDto getCustomerDtoById(String id) {
+    public CustomerDto getCustomerDtoById(UUID id) {
         return customerDtoMapper.mapToDto(getCustomerById(id));
     }
 

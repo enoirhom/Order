@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(path = "/customers")
@@ -39,7 +40,7 @@ public class CustomerController {
 
     @GetMapping(path = "{id}",produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    CustomerDto getCustomerById(@PathVariable String id, @RequestHeader String authorization) {
+    CustomerDto getCustomerById(@PathVariable UUID id, @RequestHeader String authorization) {
         securityService.validate(authorization, Role.ADMIN);
         return customerService.getCustomerDtoById(id);
     }

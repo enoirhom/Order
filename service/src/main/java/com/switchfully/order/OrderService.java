@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class OrderService {
@@ -28,7 +29,7 @@ public class OrderService {
     }
 
     public CreateOrderResponseDto addOrder(CreateOrderDto createOrderDto) {
-        Customer customer = customerService.getCustomerById(createOrderDto.customerId());
+        Customer customer = customerService.getCustomerById(UUID.fromString(createOrderDto.customerId()));
         List<ItemGroup> itemGroups = convertItemGroupsDtoToItemGroups(createOrderDto.itemGroups());
         Order order = new Order(customer, itemGroups);
         orderRepository.addOrder(order);
