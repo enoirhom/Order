@@ -1,10 +1,8 @@
-package com.switchfully.stock;
+package com.switchfully.item;
 
-import com.switchfully.item.Item;
-import com.switchfully.item.ItemRepository;
-import com.switchfully.stock.dto.CreateItemDto;
-import com.switchfully.stock.dto.ItemDto;
-import com.switchfully.stock.dto.StockItemDtoMapper;
+import com.switchfully.item.dto.CreateItemDto;
+import com.switchfully.item.dto.ItemDto;
+import com.switchfully.item.dto.StockItemDtoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,12 +10,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class StockService {
+public class ItemService {
     private final ItemRepository itemRepository;
     private final StockItemDtoMapper stockItemDtoMapper;
 
     @Autowired
-    public StockService(ItemRepository itemRepository, StockItemDtoMapper stockItemDtoMapper) {
+    public ItemService(ItemRepository itemRepository, StockItemDtoMapper stockItemDtoMapper) {
         this.itemRepository = itemRepository;
         this.stockItemDtoMapper = stockItemDtoMapper;
     }

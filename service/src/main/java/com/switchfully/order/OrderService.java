@@ -5,7 +5,7 @@ import com.switchfully.item.Item;
 import com.switchfully.order.dto.CreateOrderDto;
 import com.switchfully.order.dto.CreateOrderResponseDto;
 import com.switchfully.order.dto.ItemGroupDto;
-import com.switchfully.stock.StockService;
+import com.switchfully.item.ItemService;
 import com.switchfully.user.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,13 +17,13 @@ import java.util.UUID;
 @Service
 public class OrderService {
     private final OrderRepository orderRepository;
-    private final StockService stockService;
+    private final ItemService itemService;
     private final CustomerService customerService;
 
     @Autowired
-    public OrderService(OrderRepository orderRepository, StockService stockService, CustomerService customerService) {
+    public OrderService(OrderRepository orderRepository, ItemService itemService, CustomerService customerService) {
         this.orderRepository = orderRepository;
-        this.stockService = stockService;
+        this.itemService = itemService;
         this.customerService = customerService;
     }
 
@@ -39,7 +39,7 @@ public class OrderService {
         List<ItemGroup> itemGroups = new ArrayList<>();
 
         for (ItemGroupDto itemGroupDto : itemGroupsDto) {
-            Item item = stockService.getStockItemById(itemGroupDto.itemId());
+            Item item = itemService.getStockItemById(itemGroupDto.itemId());
             item.removeQuantityFromStock(itemGroupDto.quantity());
             itemGroups.add(new ItemGroup(item, itemGroupDto.quantity()));
         }

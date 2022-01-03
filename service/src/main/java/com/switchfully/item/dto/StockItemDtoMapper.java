@@ -1,4 +1,4 @@
-package com.switchfully.stock.dto;
+package com.switchfully.item.dto;
 
 import com.switchfully.item.Item;
 import org.springframework.stereotype.Component;
