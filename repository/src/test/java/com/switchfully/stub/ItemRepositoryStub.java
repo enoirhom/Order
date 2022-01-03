@@ -6,24 +6,29 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
 public class ItemRepositoryStub implements ItemRepository {
-    private final Map<String, Item> stockItems;
+    private final Map<UUID, Item> stockItems;
 
     public ItemRepositoryStub() {
         stockItems = new ConcurrentHashMap<>();
     }
 
-    public void addItem(Item stockItem) {
-        stockItems.put(stockItem.getId(), stockItem);
+    @Override
+    public void addItem(Item item) {
+        stockItems.put(item.getId(), item);
     }
 
-    public Item getItemById(String id) {
-        return stockItems.get(id);
+    @Override
+    public Optional<Item> findItemById(UUID id) {
+        return Optional.of(stockItems.get(id));
     }
 
+    @Override
     public List<Item> getAllItems() {
         return stockItems.values().stream().toList();
     }

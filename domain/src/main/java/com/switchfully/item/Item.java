@@ -1,23 +1,44 @@
 package com.switchfully.item;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.UUID;
 
+@Entity
+@Table(name = "item")
 public class Item {
-    private String id;
+
+    @Id
+    @Column(name = "item_id")
+    private UUID id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "description")
     private String description;
-    private int quantity;
+
+    @Column(name = "stock_quantity")
+    private int stockQuantity;
+
+    @Column(name = "price")
     private double price;
 
-    public Item(String name, String description, int quantity, double price) {
-        this.id = UUID.randomUUID().toString();
+    public Item(String name, String description, int stockQuantity, double price) {
+        this.id = UUID.randomUUID();
         this.name = name;
         this.description = description;
-        this.quantity = quantity;
+        this.stockQuantity = stockQuantity;
         this.price = price;
     }
 
-    public String getId() {
+    protected Item() {
+
+    }
+
+    public UUID getId() {
         return id;
     }
 
@@ -29,8 +50,8 @@ public class Item {
         return description;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public int getStockQuantity() {
+        return stockQuantity;
     }
 
     public double getPrice() {
@@ -38,9 +59,9 @@ public class Item {
     }
 
     public void removeQuantityFromStock(int quantity) {
-        this.quantity -= quantity;
-        if (this.quantity < 0) {
-            this.quantity = 0;
+        this.stockQuantity -= quantity;
+        if (this.stockQuantity < 0) {
+            this.stockQuantity = 0;
         }
     }
 }

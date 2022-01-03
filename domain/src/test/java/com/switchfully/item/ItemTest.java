@@ -17,7 +17,7 @@ class ItemTest {
 
         Assertions.assertThat(actual.getName()).isEqualTo(name);
         Assertions.assertThat(actual.getDescription()).isEqualTo(description);
-        Assertions.assertThat(actual.getQuantity()).isEqualTo(quantity);
+        Assertions.assertThat(actual.getStockQuantity()).isEqualTo(quantity);
         Assertions.assertThat(actual.getPrice()).isEqualTo(price);
     }
 
@@ -27,7 +27,7 @@ class ItemTest {
 
         stockItem.removeQuantityFromStock(5);
 
-        Assertions.assertThat(stockItem.getQuantity()).isEqualTo(5);
+        Assertions.assertThat(stockItem.getStockQuantity()).isEqualTo(5);
     }
 
     @Test
@@ -36,7 +36,7 @@ class ItemTest {
 
         stockItem.removeQuantityFromStock(15);
 
-        Assertions.assertThat(stockItem.getQuantity()).isEqualTo(0);
+        Assertions.assertThat(stockItem.getStockQuantity()).isEqualTo(0);
     }
 
 }

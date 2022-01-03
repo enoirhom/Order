@@ -3,6 +3,7 @@ package com.switchfully.order;
 import com.switchfully.item.Item;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 public class ItemGroup {
     private static final int NORMAL_SHIPPING_DELAY = 1;
@@ -17,7 +18,7 @@ public class ItemGroup {
         this.item = item;
         this.quantity = quantity;
         this.unitPrice = item.getPrice();
-        this.shippingDate = calculateShippingDate(item.getQuantity(), quantity);
+        this.shippingDate = calculateShippingDate(item.getStockQuantity(), quantity);
     }
 
     private LocalDate calculateShippingDate(int stockQuantity, int orderQuantity) {
@@ -27,7 +28,7 @@ public class ItemGroup {
         return LocalDate.now().plusDays(OUT_OF_STOCK_SHIPPING_DELAY);
     }
 
-    public String getId() {
+    public UUID getItemId() {
         return item.getId();
     }
 

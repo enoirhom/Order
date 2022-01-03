@@ -1,4 +1,6 @@
 package com.switchfully.order.dto;
 
-public record ItemGroupDto(String itemId, int quantity) {
+import java.util.UUID;
+
+public record ItemGroupDto(UUID itemId, int quantity) {
 }

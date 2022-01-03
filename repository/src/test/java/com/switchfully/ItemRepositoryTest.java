@@ -7,26 +7,26 @@ import com.switchfully.item.ItemRepositoryJpa;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+@DataJpaTest
 class ItemRepositoryTest {
+    @Autowired
     ItemRepository itemRepository;
-
-    @BeforeEach
-    void setup() {
-        itemRepository = new ItemRepositoryJpa();
-    }
 
     @Test
     void addItem_givenValidItem_thenGetItemByIdReturnsItem() {
-        Item stockItem = new Item("Item1", "Item 1 description", 10, 49.99);
+        Item item = new Item("Item1", "Item 1 description", 10, 49.99);
 
-        itemRepository.addItem(stockItem);
-        Item actual = itemRepository.getItemById(stockItem.getId());
+        itemRepository.addItem(item);
+        Optional<Item> actual = itemRepository.findItemById(item.getId());
 
-        Assertions.assertThat(actual).isEqualTo(stockItem);
+        Assertions.assertThat(actual).isPresent().get().isEqualTo(item);
     }
 
     @Test

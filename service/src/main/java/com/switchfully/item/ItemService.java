@@ -5,11 +5,14 @@ import com.switchfully.item.dto.ItemDto;
 import com.switchfully.item.dto.StockItemDtoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class ItemService {
     private final ItemRepository itemRepository;
     private final StockItemDtoMapper stockItemDtoMapper;
@@ -26,11 +29,11 @@ public class ItemService {
         return stockItemDtoMapper.mapToDto(itemToAdd);
     }
 
-    public Item getStockItemById(String id) {
-        return itemRepository.getItemById(id);
+    public Item getStockItemById(UUID id) {
+        return itemRepository.findItemById(id).get();
     }
 
-    public ItemDto getStockDtoItemById(String id) {
+    public ItemDto getStockDtoItemById(UUID id) {
         return stockItemDtoMapper.mapToDto(getStockItemById(id));
     }
 

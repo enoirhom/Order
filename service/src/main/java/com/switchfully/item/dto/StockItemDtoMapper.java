@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 public class StockItemDtoMapper {
 
     public ItemDto mapToDto(Item item) {
-        return new ItemDto(item.getId(), item.getName(), item.getDescription(), item.getPrice(), item.getQuantity());
+        return new ItemDto(item.getId(), item.getName(), item.getDescription(), item.getPrice(), item.getStockQuantity());
     }
 
     public Item mapDtoToStockItem(CreateItemDto createItemDto) {
