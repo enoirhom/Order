@@ -66,7 +66,7 @@ class CustomerControllerTest {
                 .header("Authorization", "Basic YWRtaW5Ab3JkZXIuY29tOg==")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(customerDtoResponse.id()))
+                .andExpect(jsonPath("$.id").value(customerDtoResponse.id().toString()))
                 .andExpect(jsonPath("$.firstname").value(createCustomerDto.firstname()))
                 .andExpect(jsonPath("$.lastname").value(createCustomerDto.lastname()))
                 .andExpect(jsonPath("$.email").value(createCustomerDto.email()))

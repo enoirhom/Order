@@ -1,8 +1,7 @@
 package com.switchfully.order;
 
 import com.switchfully.customer.CustomerService;
-import com.switchfully.item.ItemGroup;
-import com.switchfully.item.StockItem;
+import com.switchfully.item.Item;
 import com.switchfully.order.dto.CreateOrderDto;
 import com.switchfully.order.dto.CreateOrderResponseDto;
 import com.switchfully.order.dto.ItemGroupDto;
@@ -40,9 +39,9 @@ public class OrderService {
         List<ItemGroup> itemGroups = new ArrayList<>();
 
         for (ItemGroupDto itemGroupDto : itemGroupsDto) {
-            StockItem stockItem = stockService.getStockItemById(itemGroupDto.itemId());
-            stockItem.removeQuantityFromStock(itemGroupDto.quantity());
-            itemGroups.add(new ItemGroup(stockItem, itemGroupDto.quantity()));
+            Item item = stockService.getStockItemById(itemGroupDto.itemId());
+            item.removeQuantityFromStock(itemGroupDto.quantity());
+            itemGroups.add(new ItemGroup(item, itemGroupDto.quantity()));
         }
 
         return itemGroups;

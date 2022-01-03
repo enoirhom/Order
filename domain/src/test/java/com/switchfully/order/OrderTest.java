@@ -1,7 +1,6 @@
 package com.switchfully.order;
 
 
-import com.switchfully.item.ItemGroup;
 import com.switchfully.user.Customer;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

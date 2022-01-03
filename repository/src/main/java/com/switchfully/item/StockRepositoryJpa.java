@@ -10,24 +10,24 @@ import java.util.concurrent.ConcurrentHashMap;
 @Repository
 @Primary
 public class StockRepositoryJpa implements StockRepository {
-    private final Map<String, StockItem> stockItems;
+    private final Map<String, Item> stockItems;
 
     public StockRepositoryJpa() {
         stockItems = new ConcurrentHashMap<>();
     }
 
     @Override
-    public void addItem(StockItem stockItem) {
+    public void addItem(Item stockItem) {
         stockItems.put(stockItem.getId(), stockItem);
     }
 
     @Override
-    public StockItem getItemById(String id) {
+    public Item getItemById(String id) {
         return stockItems.get(id);
     }
 
     @Override
-    public List<StockItem> getAllItems() {
+    public List<Item> getAllItems() {
         return stockItems.values().stream().toList();
     }
 

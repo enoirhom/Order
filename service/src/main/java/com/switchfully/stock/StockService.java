@@ -1,9 +1,9 @@
 package com.switchfully.stock;
 
+import com.switchfully.item.Item;
 import com.switchfully.item.StockRepository;
-import com.switchfully.item.StockItem;
-import com.switchfully.stock.dto.CreateStockItemDto;
-import com.switchfully.stock.dto.StockItemDto;
+import com.switchfully.stock.dto.CreateItemDto;
+import com.switchfully.stock.dto.ItemDto;
 import com.switchfully.stock.dto.StockItemDtoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,21 +22,21 @@ public class StockService {
         this.stockItemDtoMapper = stockItemDtoMapper;
     }
 
-    public StockItemDto addStockItem(CreateStockItemDto createStockItemDto) {
-        StockItem stockItemToAdd = stockItemDtoMapper.mapDtoToStockItem(createStockItemDto);
-        stockRepository.addItem(stockItemToAdd);
-        return stockItemDtoMapper.mapToDto(stockItemToAdd);
+    public ItemDto addStockItem(CreateItemDto createItemDto) {
+        Item itemToAdd = stockItemDtoMapper.mapDtoToStockItem(createItemDto);
+        stockRepository.addItem(itemToAdd);
+        return stockItemDtoMapper.mapToDto(itemToAdd);
     }
 
-    public StockItem getStockItemById(String id) {
+    public Item getStockItemById(String id) {
         return stockRepository.getItemById(id);
     }
 
-    public StockItemDto getStockDtoItemById(String id) {
+    public ItemDto getStockDtoItemById(String id) {
         return stockItemDtoMapper.mapToDto(getStockItemById(id));
     }
 
-    public List<StockItemDto> getAllItems() {
+    public List<ItemDto> getAllItems() {
         return stockRepository.getAllItems()
                 .stream()
                 .map(stockItemDtoMapper::mapToDto)

@@ -1,6 +1,7 @@
 package com.switchfully.item;
 
 
+import com.switchfully.order.ItemGroup;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +15,7 @@ class ItemGroupTest {
         String description = "Item1 description";
         int stockQuantity = 10;
         double stockPrice = 49.99;
-        StockItem stockItem = new StockItem(name, description, stockQuantity, stockPrice);
+        Item stockItem = new Item(name, description, stockQuantity, stockPrice);
 
         int quantity = 2;
         ItemGroup actual = new ItemGroup(stockItem, quantity);
@@ -33,7 +34,7 @@ class ItemGroupTest {
         String description = "Item1 description";
         int stockQuantity = 10;
         double stockPrice = 49.99;
-        StockItem stockItem = new StockItem(name, description, stockQuantity, stockPrice);
+        Item stockItem = new Item(name, description, stockQuantity, stockPrice);
 
         int quantity = 15;
         ItemGroup actual = new ItemGroup(stockItem, quantity);

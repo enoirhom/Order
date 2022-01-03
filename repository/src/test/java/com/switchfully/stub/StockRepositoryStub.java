@@ -1,6 +1,6 @@
 package com.switchfully.stub;
 
-import com.switchfully.item.StockItem;
+import com.switchfully.item.Item;
 import com.switchfully.item.StockRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,21 +10,21 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
 public class StockRepositoryStub implements StockRepository {
-    private final Map<String, StockItem> stockItems;
+    private final Map<String, Item> stockItems;
 
     public StockRepositoryStub() {
         stockItems = new ConcurrentHashMap<>();
     }
 
-    public void addItem(StockItem stockItem) {
+    public void addItem(Item stockItem) {
         stockItems.put(stockItem.getId(), stockItem);
     }
 
-    public StockItem getItemById(String id) {
+    public Item getItemById(String id) {
         return stockItems.get(id);
     }
 
-    public List<StockItem> getAllItems() {
+    public List<Item> getAllItems() {
         return stockItems.values().stream().toList();
     }
 

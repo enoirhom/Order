@@ -4,16 +4,16 @@ package com.switchfully.item;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class StockItemTest {
+class ItemTest {
 
     @Test
-    void stockItemCreation_givenValidValues_thenStockItemIsCreated() {
+    void stockItemCreation_givenValidValues_thenItemIsCreated() {
         String name = "Item1";
         String description = "Item1 description";
         int quantity = 10;
         double price = 49.99;
 
-        StockItem actual = new StockItem(name, description, quantity, price);
+        Item actual = new Item(name, description, quantity, price);
 
         Assertions.assertThat(actual.getName()).isEqualTo(name);
         Assertions.assertThat(actual.getDescription()).isEqualTo(description);
@@ -23,7 +23,7 @@ class StockItemTest {
 
     @Test
     void removeQuantityFromStock_givenQuantity_thenQuantityIsRemoved() {
-        StockItem stockItem = new StockItem("Item1", "Item1 description", 10, 49.99);
+        Item stockItem = new Item("Item1", "Item1 description", 10, 49.99);
 
         stockItem.removeQuantityFromStock(5);
 
@@ -32,7 +32,7 @@ class StockItemTest {
 
     @Test
     void removeQuantityFromStock_givenBiggerQuantityThanStock_thenStockEqualsZero() {
-        StockItem stockItem = new StockItem("Item1", "Item1 description", 10, 49.99);
+        Item stockItem = new Item("Item1", "Item1 description", 10, 49.99);
 
         stockItem.removeQuantityFromStock(15);
 

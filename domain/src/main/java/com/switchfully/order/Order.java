@@ -1,6 +1,5 @@
 package com.switchfully.order;
 
-import com.switchfully.item.ItemGroup;
 import com.switchfully.user.Customer;
 
 import java.util.List;

@@ -2,8 +2,8 @@ package com.switchfully;
 
 import com.switchfully.security.SecurityService;
 import com.switchfully.stock.StockService;
-import com.switchfully.stock.dto.CreateStockItemDto;
-import com.switchfully.stock.dto.StockItemDto;
+import com.switchfully.stock.dto.CreateItemDto;
+import com.switchfully.stock.dto.ItemDto;
 import com.switchfully.user.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,15 +26,15 @@ public class ItemController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public StockItemDto addItem(@RequestHeader(value = "authorization", required = false) String authorization,
-                                @RequestBody CreateStockItemDto createStockItemDto) {
+    public ItemDto addItem(@RequestHeader(value = "authorization", required = false) String authorization,
+                           @RequestBody CreateItemDto createItemDto) {
         securityService.validate(authorization, Role.ADMIN);
-        return stockService.addStockItem(createStockItemDto);
+        return stockService.addStockItem(createItemDto);
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public List<StockItemDto> getAllItems() {
+    public List<ItemDto> getAllItems() {
         return stockService.getAllItems();
     }
 }

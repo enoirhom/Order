@@ -1,7 +1,7 @@
 package com.switchfully;
 
 
-import com.switchfully.item.StockItem;
+import com.switchfully.item.Item;
 import com.switchfully.item.StockRepository;
 import com.switchfully.item.StockRepositoryJpa;
 import org.assertj.core.api.Assertions;
@@ -20,38 +20,38 @@ class StockRepositoryTest {
     }
 
     @Test
-    void addItem_givenValidStockItem_thenGetItemByIdReturnsStockItem() {
-        StockItem stockItem = new StockItem("Item1", "Item 1 description", 10, 49.99);
+    void addItem_givenValidItem_thenGetItemByIdReturnsItem() {
+        Item stockItem = new Item("Item1", "Item 1 description", 10, 49.99);
 
         stockRepository.addItem(stockItem);
-        StockItem actual = stockRepository.getItemById(stockItem.getId());
+        Item actual = stockRepository.getItemById(stockItem.getId());
 
         Assertions.assertThat(actual).isEqualTo(stockItem);
     }
 
     @Test
     void getAllItems_givenEmptyRepository_thenReturnEmptyList() {
-        List<StockItem> stockItems = stockRepository.getAllItems();
+        List<Item> stockItems = stockRepository.getAllItems();
 
         Assertions.assertThat(stockItems).isEmpty();
     }
 
     @Test
     void getAllItems_givenPopulatedRepository_thenReturnItems() {
-        List<StockItem> expectedStockItems = populateStockRepository();
+        List<Item> expectedItems = populateStockRepository();
 
-        List<StockItem> actualStockItems = stockRepository.getAllItems();
+        List<Item> actualItems = stockRepository.getAllItems();
 
-        Assertions.assertThat(expectedStockItems).containsAll(actualStockItems);
-        Assertions.assertThat(actualStockItems).containsAll(expectedStockItems);
+        Assertions.assertThat(expectedItems).containsAll(actualItems);
+        Assertions.assertThat(actualItems).containsAll(expectedItems);
     }
 
-    private List<StockItem> populateStockRepository() {
-        List<StockItem> stockItems = new ArrayList<>();
+    private List<Item> populateStockRepository() {
+        List<Item> stockItems = new ArrayList<>();
 
-        StockItem item1 = new StockItem("Item1", "Item1 description", 10, 9.99);
-        StockItem item2 = new StockItem("Item2", "Item1 description", 15, 19.99);
-        StockItem item3 = new StockItem("Item3", "Item1 description", 20, 29.99);
+        Item item1 = new Item("Item1", "Item1 description", 10, 9.99);
+        Item item2 = new Item("Item2", "Item1 description", 15, 19.99);
+        Item item3 = new Item("Item3", "Item1 description", 20, 29.99);
 
         stockItems.add(item1);
         stockItems.add(item2);

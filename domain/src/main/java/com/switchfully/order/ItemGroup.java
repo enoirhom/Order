@@ -1,4 +1,6 @@
-package com.switchfully.item;
+package com.switchfully.order;
+
+import com.switchfully.item.Item;
 
 import java.time.LocalDate;
 
@@ -11,11 +13,11 @@ public class ItemGroup {
     private final double unitPrice;
     private final LocalDate shippingDate;
 
-    public ItemGroup(StockItem stockItem, int quantity) {
-        this.item = stockItem.item;
+    public ItemGroup(Item item, int quantity) {
+        this.item = item;
         this.quantity = quantity;
-        this.unitPrice = stockItem.getPrice();
-        this.shippingDate = calculateShippingDate(stockItem.getQuantity(), quantity);
+        this.unitPrice = item.getPrice();
+        this.shippingDate = calculateShippingDate(item.getQuantity(), quantity);
     }
 
     private LocalDate calculateShippingDate(int stockQuantity, int orderQuantity) {
@@ -26,15 +28,15 @@ public class ItemGroup {
     }
 
     public String getId() {
-        return item.id;
+        return item.getId();
     }
 
     public String getName() {
-        return item.name;
+        return item.getName();
     }
 
     public String getDescription() {
-        return item.description;
+        return item.getDescription();
     }
 
     public int getQuantity() {
