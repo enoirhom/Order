@@ -1,7 +1,7 @@
 package com.switchfully.stock;
 
 import com.switchfully.item.Item;
-import com.switchfully.item.StockRepository;
+import com.switchfully.item.ItemRepository;
 import com.switchfully.stock.dto.CreateItemDto;
 import com.switchfully.stock.dto.ItemDto;
 import com.switchfully.stock.dto.StockItemDtoMapper;
@@ -13,23 +13,23 @@ import java.util.stream.Collectors;
 
 @Service
 public class StockService {
-    private final StockRepository stockRepository;
+    private final ItemRepository itemRepository;
     private final StockItemDtoMapper stockItemDtoMapper;
 
     @Autowired
-    public StockService(StockRepository stockRepository, StockItemDtoMapper stockItemDtoMapper) {
-        this.stockRepository = stockRepository;
+    public StockService(ItemRepository itemRepository, StockItemDtoMapper stockItemDtoMapper) {
+        this.itemRepository = itemRepository;
         this.stockItemDtoMapper = stockItemDtoMapper;
     }
 
     public ItemDto addStockItem(CreateItemDto createItemDto) {
         Item itemToAdd = stockItemDtoMapper.mapDtoToStockItem(createItemDto);
-        stockRepository.addItem(itemToAdd);
+        itemRepository.addItem(itemToAdd);
         return stockItemDtoMapper.mapToDto(itemToAdd);
     }
 
     public Item getStockItemById(String id) {
-        return stockRepository.getItemById(id);
+        return itemRepository.getItemById(id);
     }
 
     public ItemDto getStockDtoItemById(String id) {
@@ -37,7 +37,7 @@ public class StockService {
     }
 
     public List<ItemDto> getAllItems() {
-        return stockRepository.getAllItems()
+        return itemRepository.getAllItems()
                 .stream()
                 .map(stockItemDtoMapper::mapToDto)
                 .collect(Collectors.toList());

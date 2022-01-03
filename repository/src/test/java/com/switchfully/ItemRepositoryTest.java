@@ -2,8 +2,8 @@ package com.switchfully;
 
 
 import com.switchfully.item.Item;
-import com.switchfully.item.StockRepository;
-import com.switchfully.item.StockRepositoryJpa;
+import com.switchfully.item.ItemRepository;
+import com.switchfully.item.ItemRepositoryJpa;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,27 +11,27 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-class StockRepositoryTest {
-    StockRepository stockRepository;
+class ItemRepositoryTest {
+    ItemRepository itemRepository;
 
     @BeforeEach
     void setup() {
-        stockRepository = new StockRepositoryJpa();
+        itemRepository = new ItemRepositoryJpa();
     }
 
     @Test
     void addItem_givenValidItem_thenGetItemByIdReturnsItem() {
         Item stockItem = new Item("Item1", "Item 1 description", 10, 49.99);
 
-        stockRepository.addItem(stockItem);
-        Item actual = stockRepository.getItemById(stockItem.getId());
+        itemRepository.addItem(stockItem);
+        Item actual = itemRepository.getItemById(stockItem.getId());
 
         Assertions.assertThat(actual).isEqualTo(stockItem);
     }
 
     @Test
     void getAllItems_givenEmptyRepository_thenReturnEmptyList() {
-        List<Item> stockItems = stockRepository.getAllItems();
+        List<Item> stockItems = itemRepository.getAllItems();
 
         Assertions.assertThat(stockItems).isEmpty();
     }
@@ -40,7 +40,7 @@ class StockRepositoryTest {
     void getAllItems_givenPopulatedRepository_thenReturnItems() {
         List<Item> expectedItems = populateStockRepository();
 
-        List<Item> actualItems = stockRepository.getAllItems();
+        List<Item> actualItems = itemRepository.getAllItems();
 
         Assertions.assertThat(expectedItems).containsAll(actualItems);
         Assertions.assertThat(actualItems).containsAll(expectedItems);
@@ -57,9 +57,9 @@ class StockRepositoryTest {
         stockItems.add(item2);
         stockItems.add(item3);
 
-        stockRepository.addItem(item1);
-        stockRepository.addItem(item2);
-        stockRepository.addItem(item3);
+        itemRepository.addItem(item1);
+        itemRepository.addItem(item2);
+        itemRepository.addItem(item3);
 
         return stockItems;
     }
